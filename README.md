@@ -78,7 +78,7 @@ $ sh eval_recall.sh
 
 ## Run tests
 ```shell
-$ pip install -r requirements.txt pytest
+$ pip install -r requirements.txt pytest hypothesis
 $ pytest -q tests
 ```
 

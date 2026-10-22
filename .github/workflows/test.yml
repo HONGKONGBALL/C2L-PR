@@ -15,6 +15,6 @@ jobs:
       - name: Install dependencies
         run: |
           pip install torch --index-url https://download.pytorch.org/whl/cpu
-          pip install numpy scikit-learn tqdm matplotlib tensorboard pytest
+          pip install numpy scikit-learn tqdm matplotlib tensorboard pytest hypothesis
       - name: Run tests
         run: pytest -q tests

@@ -56,3 +56,13 @@ def test_fast_eval(tmp_path, capsys):
 def test_fast_eval_l2(tmp_path, capsys):
     _run(tmp_path, use_l2_dis=True)
     assert 'F1_split:' in capsys.readouterr().out
+
+
+def test_nan_view_does_not_drop_finite_l2_match():
+    """One NaN orientation bin must not erase a finite match on another bin."""
+    desc1 = np.array([[0, 0, 0, 0]], dtype=np.float32)
+    finite = np.array([[1, 0, 0, 0]], dtype=np.float32)
+    missing = np.full((1, 4), np.nan, dtype=np.float32)
+    out = eval_f1.max_inverse_squared_l2(desc1, [missing, finite])
+    assert out.shape == (1,)
+    assert out[0] == 1.0
